@@ -1,0 +1,14 @@
+torch==1.11.0
+pytorch_lightning==1.9.3
+pyro-ppl==1.8.4
+dask[complete]==2023.5.0
+openml==0.13.1
+omegaconf==2.3.0
+rich==13.3.5
+seaborn==0.12.2
+pandas==2.0.1
+xlrd==2.0.1
+openpyxl==3.1.2
+tueplots==0.0.8
+numba==0.57.0
+ipykernel==6.23.1
