@@ -1,5 +1,3 @@
-# UQ experiments
-
 Accompanying repository for the paper *A Large-Scale Study of Probabilistic Calibration in Neural Network Regression*. ICML, 2023.
 
 ### Abstract
