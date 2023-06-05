@@ -2,13 +2,7 @@ Accompanying repository for the paper *A Large-Scale Study of Probabilistic Cali
 
 ### Abstract
 
-Accurate estimation of predictive uncertainty is essential for optimal decision making.
-However, recent works have shown that current neural networks tend to be miscalibrated, sparking interest in different approaches to calibration.
-In this paper, we conduct a large-scale empirical study of the probabilistic calibration of neural networks on 57 tabular regression datasets.
-We consider recalibration, conformal and regularization approaches, and investigate the trade-offs they induce on calibration and sharpness of the predictions.
-Based on kernel density estimation, we design new differentiable recalibration and regularization methods, yielding new insights into the performance of these approaches.
-Furthermore, we find conditions under which recalibration and conformal prediction are equivalent.
-Our study is fully reproducible and implemented in a common code base for fair comparison.
+Accurate probabilistic predictions are essential for optimal decision making. While neural network miscalibration has been studied primarily in classification, we investigate this in the less-explored domain of regression. We conduct the largest empirical study to date to assess the probabilistic calibration of neural networks. We also analyze the performance of recalibration, conformal, and regularization methods to enhance probabilistic calibration. Additionally, we introduce novel differentiable recalibration and regularization methods, uncovering new insights into their effectiveness. Our findings reveal that regularization methods offer a favorable tradeoff between calibration and sharpness. Post-hoc methods exhibit superior probabilistic calibration, which we attribute to the finite-sample coverage guarantee of conformal prediction. Furthermore, we demonstrate that quantile recalibration can be considered as a specific case of conformal prediction. Our study is fully reproducible and implemented in a common code base for fair comparisons.
 
 ### Installation
 
