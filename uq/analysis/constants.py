@@ -40,10 +40,10 @@ model_names = {
     'ic': 'IC',
 }
 posthoc_names = {
-    'ecdf': 'Recal',
-    'smooth_ecdf': 'KDE Recal',
-    'stochastic_ecdf': 'Stochastic Recal',
-    'linear_ecdf': 'Linear Recal',
+    'rec-emp': 'Rec-EMP',
+    'rec-kde': 'Rec-KDE',
+    'rec-stoch': 'Rec-Stc',
+    'rec-lin': 'Rec-LIN',
     'CQR': 'CQR',
 }
 metric_names = {

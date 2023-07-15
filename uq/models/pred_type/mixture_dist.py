@@ -83,4 +83,4 @@ class LogisticMixtureDist(MixtureDist):
         axis.plot([0, 1], [0, 1], color='black', linestyle='--', lw=1)
         axis.set(xlim=(0, 1), ylim=(0, 1))
         axis.set(adjustable='box', aspect='equal')
-        savefig(f'tmp/smooth_ecdf/{self.model.current_epoch}')
+        savefig(f'tmp/rec-kde/{self.model.current_epoch}')

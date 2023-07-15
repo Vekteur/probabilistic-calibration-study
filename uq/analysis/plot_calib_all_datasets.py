@@ -111,7 +111,6 @@ def plot_calib_all_datasets(plot_df, config, order, names=None, test_statistics=
     df_calib = pd.DataFrame(test_statistics)
     df_calib.index = df_calib.index.rename('run_id')
     df_calib = df_calib.rename_axis('dataset', axis=1).stack().rename('value').reset_index()
-    #df_calib['metric'] = 'test_calib_l1'
     df_calib['name'] = 'Perfectly calibrated'
     df_calib = df_calib.merge(df_abb.reset_index(), on='dataset')
     df_calib['dataset'] = pd.Categorical(df_calib['dataset'], order.to_numpy())
@@ -131,7 +130,6 @@ def plot_calib_all_datasets(plot_df, config, order, names=None, test_statistics=
         capsize=0.1,
         errwidth=1,
         ax=ax['A'],
-        #color='orange',
         palette=sns.color_palette([blue]),
     )   
     sns.barplot(
@@ -146,7 +144,7 @@ def plot_calib_all_datasets(plot_df, config, order, names=None, test_statistics=
         ax=ax['A'],
         palette=sns.color_palette([orange]),
     )
-    g.legend().remove()
+    g.legend().set_title(None)
     plt.setp(ax['A'].patches, linewidth=0)
     ax['A'].tick_params(axis='x', which='major', labelsize=7, labelrotation=90, pad=-3)
     ax['A'].set(xlabel=None, ylabel='PCE')

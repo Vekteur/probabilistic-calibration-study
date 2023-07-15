@@ -58,7 +58,7 @@ class Union(HParamNode):
         yield from chain(*self.subspaces)
 
 
-class Choice(HParamSequence):
+class HP(HParamSequence):
     def __init__(self, **kwargs):
         assert len(kwargs) == 1
         key, values = next(iter(kwargs.items()))
@@ -71,4 +71,4 @@ class Choice(HParamSequence):
         return ({self.key: value} for value in self.values)
 
     def __str__(self):
-        return f'Choice({self.key}={self.values})'
+        return f'HP({self.key}={self.values})'

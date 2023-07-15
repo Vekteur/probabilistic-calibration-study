@@ -20,7 +20,6 @@ def plot_unit(x, y, path, name, unit='epoch'):
     plt.close(fig)
 
 
-# TODO: remove since I already have a base_loss column
 def set_base_loss_column(df, stage='val'):
     df['ID'] = df.index
     df[f'{stage}_base_loss'] = stage + '_' + df['base_loss']

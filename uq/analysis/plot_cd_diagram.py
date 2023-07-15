@@ -157,7 +157,8 @@ def graph_ranks(
 
     # calculate height needed height of an image
     minnotsignificant = max(2 * 0.2, linesblank)
-    height = cline + ((k + 1) / 2) * 0.3 + minnotsignificant   # TODO: adapt this line
+    # NOTE: this line can be adapted if the canvas is too small
+    height = cline + ((k + 1) / 2) * 0.3 + minnotsignificant
 
     fig = plt.figure(figsize=(width, height))
     fig.set_facecolor('white')

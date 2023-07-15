@@ -4,10 +4,11 @@ from .base_dist_module import DistModule
 
 
 class DistIC_Regul(DistModule):
+    """
+    Implementation of the model from the paper "Individual Calibration with Randomized Forecasting".
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Specify that the model produces randomized predictions.
-        # It is useful for the worst_ece metric.
         self.randomized_predictions = True
     
     def build_model(self):

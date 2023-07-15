@@ -144,7 +144,7 @@ class BaseDataModule(LightningDataModule):
         if self.use_known_uncertainty():
             self.cond_dist = self.create_known_uncertainty(x, y)
             y = self.cond_dist.sample().unsqueeze(-1)
-        x, y = self.subsample(x, y)   # TODO: KEEP IN MIND
+        x, y = self.subsample(x, y) # We subsample the datasets with a maximum size of 50k
         tensor_data = TensorDataset(x, y)
         self.total_size = len(tensor_data)
 

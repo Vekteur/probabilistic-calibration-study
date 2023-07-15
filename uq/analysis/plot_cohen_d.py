@@ -114,10 +114,10 @@ def posthoc_or_regul_color_map(df):
     reds = sns.color_palette('Reds', 4)[1:]
 
     method_map = {
-        'KDE Recal': blues[0],
-        'Linear Recal': blues[1],
+        'Rec-KDE': blues[0],
+        'Rec-LIN': blues[1],
         'CQR': blues[1],
-        'Recal': blues[2],
+        'Rec-EMP': blues[2],
         'QR': greens[0],
         'Trunc': greens[0],
         'PCE-KDE': greens[1],
@@ -128,7 +128,6 @@ def posthoc_or_regul_color_map(df):
         for name, color in method_map.items():
             color_map[f'{base_model_names[base_loss]} + {name}'] = color
         color_map[f'{base_model_names[base_loss]}'] = reds[1]
-
     return color_map
 
 
@@ -149,27 +148,6 @@ def posthoc_dataset_color_map(df):
         if name not in color_map:
             color_map[name] = reds[i]
             i += 1
-    return color_map
-
-
-def base_loss_color_map(df):
-    blues = sns.color_palette('Blues', 4)[1:]
-    greens = sns.color_palette('Greens', 4)[1:]
-    reds = sns.color_palette('Reds', 4)[1:]
-
-    names = df.name.unique()
-    end = ' (calib)'
-    posthoc_names = [name[: -len(end)] for name in names if name.endswith(end)]
-    color_map = {}
-    for i, posthoc_name in enumerate(posthoc_names):
-        color_map[f'{posthoc_name} (train)'] = blues[i]
-        color_map[f'{posthoc_name} (calib)'] = greens[i]
-    i = 0
-    for name in names:
-        if name not in color_map:
-            color_map[name] = reds[i]
-            i += 1
-
     return color_map
 
 

@@ -21,7 +21,7 @@ class BaseDistModule(BaseModule):
         super().__init__(*args, posthoc_model=posthoc_method, **kwargs)
         self.save_hyperparameters()
         assert pred_type in ['mixture', 'spline']
-        assert posthoc_method in [None, 'ecdf', 'stochastic_ecdf', 'linear_ecdf', 'smooth_ecdf']
+        assert posthoc_method in [None, 'rec-emp', 'rec-stoch', 'rec-lin', 'rec-kde']
     
     def build_model(self, **kwargs):
         homoscedastic = self.hparams.misspecification == 'homoscedasticity'
@@ -67,9 +67,9 @@ class BaseDistModule(BaseModule):
             return None
 
         def sample(data):
-            if self.hparams.posthoc_method == 'smooth_ecdf':
-                # smooth_ecdf is too slow and requires a lot of memory when computed on the whole dataset.
-                # Especially with smooth_ecdf, truncating this dataset makes almost no difference.
+            if self.hparams.posthoc_method == 'rec-kde':
+                # rec-kde is too slow and requires a lot of memory when computed on the whole dataset.
+                # Especially with rec-kde, truncating this dataset makes almost no difference.
                 sample_size = min(2048, len(data))
                 idx = torch.distributions.Categorical(probs=torch.ones(len(data))).sample([sample_size])
                 x, y = data[:]
@@ -87,13 +87,13 @@ class BaseDistModule(BaseModule):
             pass
         x, y = dataset
         pits = self.model.dist(x).cdf(y.squeeze(dim=-1))
-        if posthoc_method == 'ecdf':
+        if posthoc_method == 'rec-emp':
             return PostHocPitCalibration(pits)
-        elif posthoc_method == 'stochastic_ecdf':
+        elif posthoc_method == 'rec-stoch':
             return PostHocStochasticPitCalibration(pits)
-        elif posthoc_method == 'linear_ecdf':
+        elif posthoc_method == 'rec-lin':
             return PostHocLinearPitCalibration(pits)
-        elif posthoc_method == 'smooth_ecdf':
+        elif posthoc_method == 'rec-kde':
             return PostHocSmoothPitCalibration(pits, model=self)
     
     def build_posthoc_model(self, dataset=None):

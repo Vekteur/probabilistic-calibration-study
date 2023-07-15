@@ -18,7 +18,7 @@ with open('requirements.txt') as f:
 setup(
 	name='uq',
 	version=__version__,
-	description='Experiments on uncertainty quantification using regularization',
+	description='Experiments on uncertainty quantification',
 	long_description=README,
 	long_description_content_type='text/markdown',
 	author='Victor Dheur',

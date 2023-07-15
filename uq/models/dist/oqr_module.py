@@ -6,6 +6,9 @@ from uq.models.regul.oqr_regul import oqr_loss
 
 
 class DistOQR_Regul(DistModule):
+    """
+    Implementation of the model from the paper "Improving conditional coverage via orthogonal quantile regression".
+    """
     def __init__(self, *args, s=100., **kwargs):
         super().__init__(*args, **kwargs)
         self.save_hyperparameters()

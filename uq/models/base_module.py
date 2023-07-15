@@ -5,11 +5,7 @@ from pytorch_lightning import LightningModule
 
 from uq.metrics.metrics_collector import MetricsCollector
 from uq.utils.general import elapsed_timer
-from uq.utils.hparams import Choice, Join, Union
-
-# posthoc_method: the p
-#
-#
+from uq.utils.hparams import HP, Join, Union
 
 
 class BaseModule(LightningModule):
@@ -27,14 +23,6 @@ class BaseModule(LightningModule):
         posthoc_dataset=None,
         batch_size=None,
     ):
-        """
-        Args:
-            posthoc_dataset: The dataset on which the posthoc model is computed.
-            posthoc_model: The mapping that transforms predictions. It is computed at the start of
-                each training batch, validation epoch, or test epoch. Enabling the computation of
-                training metrics can have a bad impact on computation time.
-        """
-
         super().__init__()
         self.save_hyperparameters(ignore='rc')
         self.rc = rc

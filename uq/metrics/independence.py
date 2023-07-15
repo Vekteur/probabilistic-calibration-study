@@ -6,9 +6,7 @@ from uq.utils.dist import icdf
 def coverage(l, y, u):
     return ((l < y) & (y < u)).float()
 
-
-# TODO
-
+# The following metrics have been adapted from https://github.com/Shai128/oqr.
 
 def indep_of_length_and_coverage_pearson(y, quantiles):
     half = quantiles.shape[1] // 2

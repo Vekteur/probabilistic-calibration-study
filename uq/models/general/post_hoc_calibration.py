@@ -8,14 +8,16 @@ from uq.models.pred_type.reflected_dist import ReflectedDist
 from uq.models.pred_type.truncated_dist import TruncatedDist
 from uq.utils.torch_utils import centered_bins
 
+# Implementation of quantile recalibration from the paper "Accurate Uncertainties for Deep Learning Using Calibrated Regression".
 PostHocPitCalibration = EmpiricalCDF
+
+# The following models use a different calibration map
 PostHocStochasticPitCalibration = StochasticEmpiricalCDF
 
 
 class PostHocLinearPitCalibration(LinearSpline):
     def __init__(self, pit, **kwargs):
         bx = torch.sort(pit)[0]
-        # centered_bins(len(bx))
         by = (torch.arange(len(bx)) + 1) / (len(bx) + 1)
         super().__init__(bx, by, **kwargs)
 
@@ -60,6 +62,9 @@ class Adjuster(AffineTransform):
 
 
 class PostHocConformalCalibration:
+    """
+    Implementation of the model from the paper "Conformalized Quantile Regression".
+    """
     def __init__(self, y, quantiles, alpha, scaler=None, rc=None):
         self.q = self.conformal_quantile(y, quantiles, alpha)
         if scaler is not None and rc.config.unnormalize:
